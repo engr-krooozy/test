@@ -1,0 +1,10 @@
+version: 2
+
+sources:
+  - name: staging
+    database: "{{ env_var('SNOWFLAKE_DATABASE') }}"
+    schema: "{{ env_var('SNOWFLAKE_SCHEMA') }}"
+    tables:
+      - name: staging_users
+      - name: staging_savings_transaction
+      - name: staging_savings_plan

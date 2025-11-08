@@ -1,0 +1,39 @@
+version: '3.8'
+
+services:
+  mongo:
+    image: mongo:latest
+    container_name: mongo
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo-data:/data/db
+
+  postgres:
+    image: postgres:latest
+    container_name: postgres
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_USER=user
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_DB=db
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+
+  pipeline:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: pipeline
+    volumes:
+      - ./data_pipeline:/app/data_pipeline
+    depends_on:
+      - mongo
+      - postgres
+    env_file:
+      - .env
+
+volumes:
+  mongo-data:
+  postgres-data:

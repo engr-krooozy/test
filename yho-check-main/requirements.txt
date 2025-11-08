@@ -1,0 +1,16 @@
+# For MongoDB
+pymongo
+
+# For Postgres
+psycopg2-binary
+
+# For Snowflake
+snowflake-connector-python
+
+# For dbt
+dbt-core==1.7.13
+dbt-snowflake==1.7.5
+dbt-postgres==1.7.13
+
+# For environment variables
+python-dotenv
